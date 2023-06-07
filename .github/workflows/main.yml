@@ -1,0 +1,38 @@
+name: Build app and deploy to aliyun
+on:
+  #监听push操作
+  push:
+    branches:
+      # master分支，你也可以改成其他分支
+      - master
+jobs:
+  build:
+    # runs-on 指定job任务运行所需要的虚拟机环境(必填字段)
+    runs-on: ubuntu-latest
+    steps:
+      # 获取源码
+      - name: Checkout
+        # 使用action库  actions/checkout获取源码
+        uses: actions/checkout@master
+      # 安装Node20
+      - name: use Node.js 20.2.0
+        # 使用action库  actions/setup-node安装node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.2.0
+      # 安装依赖
+      - name: npm install
+        run: npm install
+      # 打包
+      - name: npm build
+        run: npm run build
+      # 部署到阿里云
+      - name: Deploy to tencentCloud
+        uses: wangyucode/sftp-upload-action@v1.1
+        with:
+          host: 1.15.236.53  #你的nginx服务器公网ip
+          port: 22 #你的nginx服务器ssh端口
+          username: ${{ secrets.USERNAME }} #你的nginx服务器用户名
+          password: ${{ secrets.PASSWORD }} #你的nginx服务器密码
+          localDir: "dist" #你vue项目build好的文件的路径,每次服务器上会自动删除对应的文件夹后重新覆盖
+          remoteDir: /www/wwwroot/秋招/blog-frontend #你要把你build好的文件夹放到nginx服务器上的什么位置
