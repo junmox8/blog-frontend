@@ -9,6 +9,11 @@ const routes = [
     name: "login",
     component: () => import('@/views/login/index.vue')
   },
+  {
+    path: "/admin",
+    name: 'admin',
+    component: () => import("@/views/admin/index.vue")
+  }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

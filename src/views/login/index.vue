@@ -37,6 +37,11 @@
           <el-button class="register-button" @click="handleRegister" :loading="registerLoading">立即注册</el-button>
         </div>
       </div>
+      <div class="container-right-footer">
+        <div class="online-users">
+          当前在线:{{ onlineUsers }}人
+        </div>
+      </div>
     </div>
 
   </div>
@@ -49,6 +54,7 @@ import { useRouter } from "vue-router";
 import { register as userRegister, login as userLogin } from "@/axios/service";
 import { ref, onMounted, reactive } from "vue";
 import { getLoginBgc, getLoginWord } from "@/axios/service";
+import socket from '@/utils/socket'
 const store = useUserStore()
 const router = useRouter();
 const usernameToRegister = ref("");
@@ -63,8 +69,10 @@ const staticInto = reactive({
   cnText: "",
   enText: "",
 });
+const onlineUsers = ref(0)
 onMounted(() => {
   initAssets()
+  initOnlineUsers()
 })
 const initAssets = async () => {
   try {
@@ -80,6 +88,12 @@ const initAssets = async () => {
       type: "error",
     });
   }
+}
+const initOnlineUsers = async () => {
+  socket.on("userCount", userCount => {
+    onlineUsers.value = userCount
+  })
+  socket.emit("getUserCount", 1)
 }
 const changeInputBox = (type) => {
   currentBoxType.value = type
@@ -118,17 +132,16 @@ const handleLogin = async () => {
       usernameToLogin.value,
       passwordToLogin.value
     );
-    const { data: { success = false, errorMsg = '', data = { dataValues: {} } } = {} } = loginResult || {};
+    const { data: { success = false, errorMsg = '', data = {} } } = loginResult || {};
     if (success) {
-      console.log(success)
       ElMessage({
         message: "用户登录成功",
         type: "success",
       });
       store.setUserId(data.dataValues.id);
-      store.setToken(data.dataValues.token);
-      localStorage.setItem("token", data.dataValues.token);
-      router.push("/home?id=" + data.dataValues.id);
+      store.setToken(data.token);
+      localStorage.setItem("token", data.token);
+      router.push("/admin?id=" + data.dataValues.id);
     } else {
       ElMessage({
         message: errorMsg,
@@ -325,6 +338,15 @@ const handleLogin = async () => {
           color: #fffff8;
         }
       }
+    }
+
+    &-footer {
+      width: 70%;
+      margin-left: 15%;
+      display: flex;
+      justify-content: center;
+
+      .online-users {}
     }
 
     .is-login {
