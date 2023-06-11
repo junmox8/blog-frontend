@@ -1,17 +1,7 @@
-import { fileURLToPath, URL } from 'node:url'
-
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    }
-  },
-  server: {
+// eslint-disable-next-line no-undef
+module.exports = {
+  devServer: {
+    open: true,
     proxy: {
       "/api": {
         target: "http://127.0.0.1:3000",
@@ -32,6 +22,13 @@ export default defineConfig({
           "^/word": "", // 替换成target中的地址
         },
       },
-    }
-  }
-})
+    },
+  },
+  lintOnSave: false, //这里禁止使用eslint-loader
+  //以下是其它相关配置
+  configureWebpack: {
+    externals: {
+      BMap: "BMap",
+    },
+  },
+};
