@@ -9,6 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@service': fileURLToPath(new URL('./src/axios/service/', import.meta.url)),
     }
   },
   server: {

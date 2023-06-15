@@ -1,0 +1,12 @@
+:root {
+  --color: black;
+  --background-color: #fff;
+}
+.light {
+  --color: black;
+  --background-color: #fff;
+}
+.dark {
+  --color: red;
+  --background-color: grey;
+}

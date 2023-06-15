@@ -21,6 +21,7 @@ Axios.interceptors.response.use(
       location.replace("http://127.0.0.1:3000");
       ElMessage({ type: "error", message: "请重新登录" });
     }
+    loading = null
     return responce;
   },
   (error) => {

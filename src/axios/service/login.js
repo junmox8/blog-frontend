@@ -1,4 +1,4 @@
-import Axios from "./index";
+import Axios from "../index";
 export const getLoginBgc = async () => {
   return Axios.get("/bgc/bingpic");
 };

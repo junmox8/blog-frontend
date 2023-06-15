@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :style="{
+  <div class="container dark" :style="{
     backgroundImage: `url(${staticInto.backgroundImgSrc})`,
   }">
     <div class="container-left">
@@ -15,13 +15,13 @@
         <div class="project-name">博客项目 <span class="version">v1.0.0</span></div>
         <div class="author-name">黄俊轶</div>
       </div>
-      <div :class="['container-right-body', currentBoxType]">
+      <div :class="['container-right-body', `is-${currentBoxType}`]">
         <div class="login-box" ref="loginBox">
           <p>用户名</p>
           <input type="text" v-model="usernameToLogin" @keydown.enter="handleLogin" class="input" />
           <p>密码</p>
           <input type="password" v-model="passwordToLogin" @keydown.enter="handleLogin" class="input" />
-          <div class="change-box-link" @click="changeInputBox('is-register')">
+          <div class="change-box-link" @click="changeInputBox('register')">
             点击注册
           </div>
           <el-button class="login-button" @click="handleLogin" :loading="loginLoading">立即登录</el-button>
@@ -31,7 +31,7 @@
           <input type="text" v-model="usernameToRegister" class="input" />
           <p>密码</p>
           <input type="password" v-model="passwordToRegister" class="input" />
-          <div class="change-box-link" @click="changeInputBox('is-login')">
+          <div class="change-box-link" @click="changeInputBox('login')">
             点击登录
           </div>
           <el-button class="register-button" @click="handleRegister" :loading="registerLoading">立即注册</el-button>
@@ -51,9 +51,8 @@
 import { ElMessage } from "element-plus";
 import { useUserStore } from "@/stores/counter";
 import { useRouter } from "vue-router";
-import { register as userRegister, login as userLogin } from "@/axios/service";
 import { ref, onMounted, reactive } from "vue";
-import { getLoginBgc, getLoginWord } from "@/axios/service";
+import { getLoginBgc, getLoginWord, register, login } from "@service/login";
 import socket from '@/utils/socket'
 const store = useUserStore()
 const router = useRouter();
@@ -61,7 +60,7 @@ const usernameToRegister = ref("");
 const passwordToRegister = ref("");
 const usernameToLogin = ref("");
 const passwordToLogin = ref("");
-const currentBoxType = ref('is-login')
+const currentBoxType = ref('login')
 const loginLoading = ref(false)
 const registerLoading = ref(false)
 const staticInto = reactive({
@@ -90,10 +89,10 @@ const initAssets = async () => {
   }
 }
 const initOnlineUsers = async () => {
-  socket.on("userCount", userCount => {
+  socket.on("onlineUsers", userCount => {
     onlineUsers.value = userCount
   })
-  socket.emit("getUserCount", 1)
+  socket.emit("getOnlineUsers", 1)
 }
 const changeInputBox = (type) => {
   currentBoxType.value = type
@@ -101,7 +100,7 @@ const changeInputBox = (type) => {
 const handleRegister = async () => {
   if (usernameToRegister.value && passwordToRegister.value) {
     registerLoading.value = true
-    const { data: { success, errorMsg } } = await userRegister(
+    const { data: { success, errorMsg } } = await register(
       usernameToRegister.value,
       passwordToRegister.value
     );
@@ -128,7 +127,7 @@ const handleRegister = async () => {
 const handleLogin = async () => {
   if (usernameToLogin.value && passwordToLogin.value) {
     loginLoading.value = true
-    const loginResult = await userLogin(
+    const loginResult = await login(
       usernameToLogin.value,
       passwordToLogin.value
     );
@@ -169,6 +168,7 @@ const handleLogin = async () => {
   overflow-x: hidden;
   display: flex;
   align-items: center;
+  background-color: #f0f1fa;
 
   &-left {
     padding: 60vh 0 0 5vw;
