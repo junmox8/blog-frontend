@@ -18,15 +18,30 @@
               <div>篇</div>
             </div>
           </div>
-          <div class="body">
-            <Article v-for="(item, index) in articleList" :key="index" :img="item.img" :title="item.title"
-              :introduction="item.introduction" :avatar="item.User.avatar" :name="item.User.name"
-              :time="item.createdAt.substring(0, 10)" :tag="item.Categories" :like="item.like" :comment="item.comment"
-              :look="item.look"></Article>
+          <div class="body" v-loading="isLoading">
+            <Article
+              v-for="(item, index) in articleList"
+              :key="index"
+              :img="item.img"
+              :title="item.title"
+              :introduction="item.introduction"
+              :avatar="item.User.avatar"
+              :name="item.User.name"
+              :time="item.createdAt.substring(0, 10)"
+              :tag="item.Categories"
+              :like="item.like"
+              :comment="item.comment"
+              :look="item.look"
+            ></Article>
           </div>
           <div class="footer">
-            <el-pagination :page-size="3" :pager-count="11" layout="prev, pager, next" :total="articlesCount"
-              @current-change="changePage" />
+            <el-pagination
+              :page-size="3"
+              :pager-count="11"
+              layout="prev, pager, next"
+              :total="articlesCount"
+              @current-change="handleTurnPage"
+            />
           </div>
         </div>
       </div>
@@ -44,8 +59,15 @@
             <div class="header-right">more</div>
           </div>
           <div class="body">
-            <el-tag class="catalogue-tag ml5" size="large" effect="dark" v-for="(tag, index) in tags" :key="index"
-              :type="tagType[index % 5]">{{ tag.name }}</el-tag>
+            <el-tag
+              class="catalogue-tag ml5"
+              size="large"
+              effect="dark"
+              v-for="(tag, index) in tags"
+              :key="index"
+              :type="tagType[index % 5]"
+              >{{ tag.name }}</el-tag
+            >
           </div>
         </div>
         <div class="recent-article-list border">
@@ -59,8 +81,13 @@
             <div class="header-right">more</div>
           </div>
           <div class="body">
-            <RecentArticle v-for="article in recentArticles" :time="article.createdAt" :id="article.id" :key="article.id"
-              :title="article.title"></RecentArticle>
+            <RecentArticle
+              v-for="article in recentArticles"
+              :time="article.createdAt"
+              :id="article.id"
+              :key="article.id"
+              :title="article.title"
+            ></RecentArticle>
           </div>
         </div>
         <div class="make-friend-content border">
@@ -69,11 +96,35 @@
               <el-icon class="mr5">
                 <UserFilled />
               </el-icon>
-              <span>联系方式</span>
+              <span>My MakeFriend</span>
             </div>
             <div class="header-right">more</div>
           </div>
-          <div class="body"></div>
+          <div class="body">
+            <el-tabs type="border-card" stretch>
+              <el-tab-pane label="联系方式">
+                <div class="contact-information mb5">
+                  <div>
+                    <i class="iconfont icon-qq"></i>
+                    <span>931097192</span>
+                  </div>
+                  <div class="ml20">
+                    <i class="iconfont icon-weixin"></i>
+                    <span>junmox8</span>
+                  </div>
+                </div>
+                <div class="welcome-text">
+                  <img
+                    width="20"
+                    src="https://huangjunyi-1310688513.cos.ap-shanghai.myqcloud.com/articleContent/%E8%9A%81%E4%BA%BA.png "
+                  />
+                  <span>有问题欢迎同学来学习讨论^ ^</span>
+                </div>
+                <div></div>
+              </el-tab-pane>
+              <el-tab-pane label="xxx"> 暂时没想好这里写啥= = </el-tab-pane>
+            </el-tabs>
+          </div>
         </div>
       </div>
     </transition>
@@ -93,6 +144,7 @@ const store = useThemeStore()
 const articlesCount = ref(0)
 const articleList = ref([])
 const recentArticles = ref([])
+const isLoading = ref(false)
 const tags = computed(() => articleTags)
 const tagType = computed(() => _tagType)
 onMounted(async () => {
@@ -108,17 +160,30 @@ onMounted(async () => {
     const {
       data: { data: _recentArticles }
     } = await getRecentArticle()
-    console.log(_recentArticles)
     recentArticles.value = _recentArticles
   } catch (e) {
-    console.log(e)
     ElMessage({
       type: 'error',
       message: '获取数据失败,请重试'
     })
   }
 })
-const changePage = async () => { }
+const handleTurnPage = async (pageNumber) => {
+  try {
+    isLoading.value = true
+    const {
+      data: { data }
+    } = await getArticleList(pageNumber, 3)
+    articleList.value = data
+  } catch (e) {
+    ElMessage({
+      type: 'error',
+      message: '获取数据失败,请重试'
+    })
+  } finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -165,6 +230,9 @@ const changePage = async () => { }
       background-color: var(--background-color);
 
       .header {
+        &-left {
+          color: var(--color);
+        }
         &-right {
           .article-number {
             color: #ffd04b;
@@ -204,7 +272,8 @@ const changePage = async () => { }
       background-color: var(--background-color);
       margin-bottom: 10px;
 
-      .header {}
+      .header {
+      }
 
       .body {
         padding: 0 10px;
@@ -233,9 +302,33 @@ const changePage = async () => { }
 
     .make-friend-content {
       width: 22vw;
-      height: 260px;
+      height: 160px;
       background-color: var(--background-color);
       margin-bottom: 10px;
+
+      .body {
+        clear: both;
+        /deep/ .el-tabs {
+          border: none;
+          background-color: var(--background-color);
+          .el-tabs__header {
+            background-color: var(--background-color);
+          }
+          .el-tabs__content {
+            padding: 10px 0 0px 10px;
+          }
+        }
+        .contact-information {
+          display: flex;
+        }
+        span {
+          font-size: 13px;
+        }
+        .welcome-text {
+          display: flex;
+          align-items: center;
+        }
+      }
     }
   }
 

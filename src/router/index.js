@@ -37,7 +37,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (from.name) {
+  if (from.name && from.name !== 'login') {
     const stayTime = Date.now() - enterTimeClosure.getEnterTime()
     trackEvent('停留页面', `在${from.path}页面停留了${convertToSeconds(stayTime)}秒`)
   }

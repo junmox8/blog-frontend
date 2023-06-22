@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-07 10:48:09
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-22 15:47:13
+ * @LastEditTime: 2023-06-23 01:53:36
  * @FilePath: /blog-frontend/blog-frontend/vite.config.js
  */
 import { fileURLToPath, URL } from 'node:url'

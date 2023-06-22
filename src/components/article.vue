@@ -121,6 +121,7 @@ const tagType = computed(() => _tagType)
       display: flex;
       align-items: center;
       font-size: 16px;
+      color: var(--color);
       .title {
         max-width: 95%;
         overflow: hidden;
