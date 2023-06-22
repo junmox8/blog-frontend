@@ -1,0 +1,96 @@
+@import './theme.css';
+@import './iconfont/iconfont.css';
+*{
+  padding: 0;
+  margin: 0;
+}
+.menu-item-container {
+  width: 100%;
+  min-height: 91.8vh;
+  background-image: var(--background-img);
+  background-size: cover;
+  transition: all;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+}
+@keyframes color {
+  .-index-loop(@i: 0) when (@i <=100) {
+    @percent: @i * 4%;
+    @colors: #d02618,
+    #d04e18,
+    #dd8f10,
+    #ddaf10,
+    #ddd210,
+    #cfdd10,
+    #a6dd10,
+    #8cdd10,
+    #5cdd10,
+    #29dd10,
+    #10dd8c,
+    #10ddbf,
+    #10d2dd,
+    #10acdd,
+    #1083dd,
+    #1063dd,
+    #1039dd,
+    #4910dd,
+    #6c10dd,
+    #8c10dd,
+    #dd10dc,
+    #dd1056;
+    @color: extract(@colors, @i);
+
+    @{percent} {
+      color: @color;
+    }
+
+    .-index-loop(@i + 1);
+  }
+
+  .-index-loop();
+}
+
+// 循环生成 一组常用的 margin, padding 各方向的间距类
+// .mt5 .pt10 ...
+@size: 5, 10, 20, 30;
+@direction: t top, b bottom, l left, r right;
+
+.dirLoop(@direction, @i: 1) when(@i <=length(@direction)) {
+  @item: extract(@direction, @i);
+  @key: extract(@item, 1);
+  @val: extract(@item, 2);
+
+  .sizeLoop(@size, @j: 1) when(@j <=length(@size)) {
+    @sizeVal: extract(@size, @j);
+
+    .m@{key}@{sizeVal} {
+      margin-@{val}: (@sizeVal * 1px);
+    }
+
+    .p@{key}@{sizeVal} {
+      padding-@{val}: (@sizeVal * 1px);
+    }
+
+    .sizeLoop(@size, @j + 1);
+  }
+
+  .sizeLoop(@size, 1);
+  .dirLoop(@direction, @i + 1);
+}
+.dirLoop(@direction, 1);
+
+// 根据 size 生成通用类：.pd5 .pd10 .mg5 .mg10 ...
+.pmLoop(@size, @i: 1) when(@i <=length(@size)) {
+  @item: extract(@size, @i);
+  @sizeVal: extract(@item, 1);
+
+  .mg@{sizeVal} {
+    margin: (@sizeVal * 1px);
+  }
+
+  .pd@{sizeVal} {
+    padding: (@sizeVal * 1px);
+  }
+  .pmLoop(@size, @i + 1);
+}
+.pmLoop(@size, 1);

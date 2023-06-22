@@ -1,0 +1,440 @@
+@import 'theme.css';
+@import 'iconfont/iconfont.css';
+* {
+  padding: 0;
+  margin: 0;
+}
+.menu-item-container {
+  width: 100%;
+  min-height: 91.8vh;
+  background-image: var(--background-img);
+  background-size: cover;
+  transition: all;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+}
+@keyframes color {
+  0% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 0);
+  }
+  4% {
+    color: #d02618;
+  }
+  8% {
+    color: #d04e18;
+  }
+  12% {
+    color: #dd8f10;
+  }
+  16% {
+    color: #ddaf10;
+  }
+  20% {
+    color: #ddd210;
+  }
+  24% {
+    color: #cfdd10;
+  }
+  28% {
+    color: #a6dd10;
+  }
+  32% {
+    color: #8cdd10;
+  }
+  36% {
+    color: #5cdd10;
+  }
+  40% {
+    color: #29dd10;
+  }
+  44% {
+    color: #10dd8c;
+  }
+  48% {
+    color: #10ddbf;
+  }
+  52% {
+    color: #10d2dd;
+  }
+  56% {
+    color: #10acdd;
+  }
+  60% {
+    color: #1083dd;
+  }
+  64% {
+    color: #1063dd;
+  }
+  68% {
+    color: #1039dd;
+  }
+  72% {
+    color: #4910dd;
+  }
+  76% {
+    color: #6c10dd;
+  }
+  80% {
+    color: #8c10dd;
+  }
+  84% {
+    color: #dd10dc;
+  }
+  88% {
+    color: #dd1056;
+  }
+  92% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 23);
+  }
+  96% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 24);
+  }
+  100% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 25);
+  }
+  104% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 26);
+  }
+  108% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 27);
+  }
+  112% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 28);
+  }
+  116% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 29);
+  }
+  120% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 30);
+  }
+  124% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 31);
+  }
+  128% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 32);
+  }
+  132% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 33);
+  }
+  136% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 34);
+  }
+  140% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 35);
+  }
+  144% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 36);
+  }
+  148% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 37);
+  }
+  152% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 38);
+  }
+  156% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 39);
+  }
+  160% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 40);
+  }
+  164% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 41);
+  }
+  168% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 42);
+  }
+  172% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 43);
+  }
+  176% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 44);
+  }
+  180% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 45);
+  }
+  184% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 46);
+  }
+  188% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 47);
+  }
+  192% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 48);
+  }
+  196% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 49);
+  }
+  200% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 50);
+  }
+  204% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 51);
+  }
+  208% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 52);
+  }
+  212% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 53);
+  }
+  216% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 54);
+  }
+  220% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 55);
+  }
+  224% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 56);
+  }
+  228% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 57);
+  }
+  232% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 58);
+  }
+  236% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 59);
+  }
+  240% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 60);
+  }
+  244% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 61);
+  }
+  248% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 62);
+  }
+  252% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 63);
+  }
+  256% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 64);
+  }
+  260% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 65);
+  }
+  264% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 66);
+  }
+  268% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 67);
+  }
+  272% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 68);
+  }
+  276% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 69);
+  }
+  280% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 70);
+  }
+  284% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 71);
+  }
+  288% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 72);
+  }
+  292% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 73);
+  }
+  296% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 74);
+  }
+  300% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 75);
+  }
+  304% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 76);
+  }
+  308% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 77);
+  }
+  312% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 78);
+  }
+  316% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 79);
+  }
+  320% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 80);
+  }
+  324% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 81);
+  }
+  328% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 82);
+  }
+  332% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 83);
+  }
+  336% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 84);
+  }
+  340% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 85);
+  }
+  344% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 86);
+  }
+  348% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 87);
+  }
+  352% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 88);
+  }
+  356% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 89);
+  }
+  360% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 90);
+  }
+  364% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 91);
+  }
+  368% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 92);
+  }
+  372% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 93);
+  }
+  376% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 94);
+  }
+  380% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 95);
+  }
+  384% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 96);
+  }
+  388% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 97);
+  }
+  392% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 98);
+  }
+  396% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 99);
+  }
+  400% {
+    color: extract(#d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10, #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd, #8c10dd, #dd10dc, #dd1056, 100);
+  }
+}
+.mt5 {
+  margin-top: 5px;
+}
+.pt5 {
+  padding-top: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.pt10 {
+  padding-top: 10px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.pt20 {
+  padding-top: 20px;
+}
+.mt30 {
+  margin-top: 30px;
+}
+.pt30 {
+  padding-top: 30px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+.pb5 {
+  padding-bottom: 5px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.pb10 {
+  padding-bottom: 10px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.pb20 {
+  padding-bottom: 20px;
+}
+.mb30 {
+  margin-bottom: 30px;
+}
+.pb30 {
+  padding-bottom: 30px;
+}
+.ml5 {
+  margin-left: 5px;
+}
+.pl5 {
+  padding-left: 5px;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.pl10 {
+  padding-left: 10px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+.pl20 {
+  padding-left: 20px;
+}
+.ml30 {
+  margin-left: 30px;
+}
+.pl30 {
+  padding-left: 30px;
+}
+.mr5 {
+  margin-right: 5px;
+}
+.pr5 {
+  padding-right: 5px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.pr10 {
+  padding-right: 10px;
+}
+.mr20 {
+  margin-right: 20px;
+}
+.pr20 {
+  padding-right: 20px;
+}
+.mr30 {
+  margin-right: 30px;
+}
+.pr30 {
+  padding-right: 30px;
+}
+.mg5 {
+  margin: 5px;
+}
+.pd5 {
+  padding: 5px;
+}
+.mg10 {
+  margin: 10px;
+}
+.pd10 {
+  padding: 10px;
+}
+.mg20 {
+  margin: 20px;
+}
+.pd20 {
+  padding: 20px;
+}
+.mg30 {
+  margin: 30px;
+}
+.pd30 {
+  padding: 30px;
+}

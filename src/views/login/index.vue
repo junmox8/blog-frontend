@@ -1,5 +1,5 @@
 <template>
-  <div class="container dark" :style="{
+  <div class="container" :style="{
     backgroundImage: `url(${staticInto.backgroundImgSrc})`,
   }">
     <div class="container-left">
@@ -49,7 +49,7 @@
 
 <script setup>
 import { ElMessage } from "element-plus";
-import { useUserStore } from "@/stores/counter";
+import { useUserStore } from "@/stores/user";
 import { useRouter } from "vue-router";
 import { ref, onMounted, reactive } from "vue";
 import { getLoginBgc, getLoginWord, register, login } from "@service/login";
@@ -141,6 +141,7 @@ const handleLogin = async () => {
       store.setToken(data.token);
       localStorage.setItem("token", data.token);
       router.push("/admin?id=" + data.dataValues.id);
+      socket.emit('connected', data.dataValues.id)
     } else {
       ElMessage({
         message: errorMsg,

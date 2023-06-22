@@ -1,19 +1,34 @@
-import Axios from "../index";
+import createAxios from "../index";
 export const getLoginBgc = async () => {
-  return Axios.get("/bgc/bingpic");
+  return createAxios({
+    url: '/bgc/bingpic',
+    method: 'get'
+  })
 };
 export const getLoginWord = async () => {
-  return Axios.get("/word");
+  return createAxios({
+    url: '/word',
+    method: 'get'
+
+  })
 };
 export const register = async (username, password) => {
-  return Axios.post("/api/user/register", {
-    username,
-    password,
-  });
+  return createAxios({
+    url: '/api/user/register',
+    method: 'post',
+    data: {
+      username,
+      password,
+    }
+  })
 };
 export const login = async (username, password) => {
-  return Axios.post("/api/user/login", {
-    username,
-    password,
-  });
+  return createAxios({
+    url: '/api/user/login',
+    method: 'post',
+    data: {
+      username,
+      password,
+    }
+  })
 };
