@@ -1,6 +1,6 @@
 @import './theme.css';
 @import './iconfont/iconfont.css';
-*{
+* {
   padding: 0;
   margin: 0;
 }
@@ -16,28 +16,9 @@
 @keyframes color {
   .-index-loop(@i: 0) when (@i <=100) {
     @percent: @i * 4%;
-    @colors: #d02618,
-    #d04e18,
-    #dd8f10,
-    #ddaf10,
-    #ddd210,
-    #cfdd10,
-    #a6dd10,
-    #8cdd10,
-    #5cdd10,
-    #29dd10,
-    #10dd8c,
-    #10ddbf,
-    #10d2dd,
-    #10acdd,
-    #1083dd,
-    #1063dd,
-    #1039dd,
-    #4910dd,
-    #6c10dd,
-    #8c10dd,
-    #dd10dc,
-    #dd1056;
+    @colors: #d02618, #d04e18, #dd8f10, #ddaf10, #ddd210, #cfdd10, #a6dd10, #8cdd10, #5cdd10,
+      #29dd10, #10dd8c, #10ddbf, #10d2dd, #10acdd, #1083dd, #1063dd, #1039dd, #4910dd, #6c10dd,
+      #8c10dd, #dd10dc, #dd1056;
     @color: extract(@colors, @i);
 
     @{percent} {
