@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-17 15:50:56
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-24 00:21:20
+ * @LastEditTime: 2023-06-24 00:34:22
  * @FilePath: /blog-frontend/blog-frontend/src/views/album/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { handUpImgKind, getAllImgKinds, handUpImg, getImgs } from '@/axios/service/album'
 import { Upload } from '@element-plus/icons-vue'
@@ -77,6 +77,7 @@ const handleFetchImgs = async (name) => {
     const {
         data: { data: _imgList }
     } = await getImgs(name)
+    if (!_imgList.url) return
     const urls = _imgList.url.split(',')
     imgList.value = urls
     fileList.value = urls.map(url => (
