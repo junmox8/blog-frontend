@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-23 21:10:55
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-23 23:53:01
+ * @LastEditTime: 2023-06-24 16:03:32
  * @Description: 图片瀑布流类
  */
 import { nextTick } from 'vue'
@@ -29,8 +29,18 @@ export default class WaterFall {
     return new Promise((resolve) => {
       nextTick(() => {
         setTimeout(() => {
-          this.columnsHeight[index] = this.columnsRef[index].offsetHeight
-          resolve()
+          const length = this.columnsRef[index].children.length
+          const imgUrl =
+            this.columnsRef[index].children[length - 1].children[0].children[0].attributes.dataUrl
+              .nodeValue
+          const image = new Image()
+          image.src = imgUrl
+          image.onload = () => {
+            const height = image.height
+            this.columnsRef[index].children[length - 1].style.height = height + 'px'
+            this.columnsHeight[index] = this.columnsRef[index].offsetHeight
+            resolve()
+          }
         })
       }, 0)
     })

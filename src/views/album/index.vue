@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-17 15:50:56
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-24 00:34:22
+ * @LastEditTime: 2023-06-24 16:54:09
  * @FilePath: /blog-frontend/blog-frontend/src/views/album/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -21,8 +21,9 @@
                 <el-empty v-show="editableTabs.length > 0 && imgList.length === 0" description="暂无图片" />
                 <div v-show="imgList.length > 0" class="img-container">
                     <div v-for="(column, index) in imgColumns" class="img-column" :key="index" ref="imgColumnsRef">
-                        <el-card shadow="hover" v-for="(img, index) in column" :key="index">
-                            <img :src="img" :dataUrl="img" ref="imgsRef" />
+                        <el-card shadow="hover" v-for="(img, index) in column" :key="index" ref="cards">
+                            <img src="https://huangjunyi-1310688513.cos.ap-shanghai.myqcloud.com/articleContent/t018609111cb4a43413.jpg"
+                                :dataUrl="img" ref="imgsRef" />
                         </el-card>
                     </div>
                 </div>
@@ -47,11 +48,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { handUpImgKind, getAllImgKinds, handUpImg, getImgs } from '@/axios/service/album'
 import { Upload } from '@element-plus/icons-vue'
 import { uploadFile } from '@/utils/upload'
+import { throttle } from '@/utils/closure'
 import { useThemeStore } from '@/stores/theme'
 import WaterFall from '@/class/waterFall'
 const store = useThemeStore()
@@ -61,14 +63,24 @@ const imgList = ref([])
 const fileList = ref([])
 const imgColumns = ref([[], [], [], []])
 const imgColumnsRef = ref([])
+const cards = ref([])
+const lazyload = ref(null)
 const uploadDialogVisible = ref(false)
 onMounted(async () => {
+    await initData()
+    handleAddEventListener()
+})
+onBeforeUnmount(() => {
+    handleRemoveEventListener()
+})
+const initData = async () => {
+    lazyload.value = throttle(handleLazyLoad, 500)
     const { data: { data } } = await getAllImgKinds()
     editableTabs.value = data
     if (data.length > 0) {
         editableTabsValue.value = data[0].name
     }
-})
+}
 const changeTab = async (name) => {
     handleFetchImgs(name)
 }
@@ -87,6 +99,7 @@ const handleFetchImgs = async (name) => {
         }
     ))
     await handleRenderImg()
+    handleLazyLoad()
 }
 const handleTabsEdit = async (target, action) => {
     if (action === 'add') {
@@ -185,6 +198,21 @@ const handleRenderImg = async () => {
     const waterFall = new WaterFall(config)
     await waterFall.render()
 }
+const handleLazyLoad = () => {
+    for (let card of cards.value) {
+        const { top, bottom } = card.$el.getBoundingClientRect()
+        if (bottom < window.innerHeight + card.$el.offsetHeight * 0.8 && top > 0) {
+            const img = card.$el.children[0].children[0]
+            img.src = img.attributes.dataUrl.nodeValue
+        }
+    }
+}
+const handleAddEventListener = () => {
+    window.addEventListener('scroll', lazyload.value)
+}
+const handleRemoveEventListener = () => {
+    window.removeEventListener('scroll', lazyload.value)
+}
 </script>
 
 <style lang="less" scoped>
@@ -223,6 +251,7 @@ const handleRenderImg = async () => {
                         box-sizing: border-box;
                         display: flex;
                         justify-content: center;
+                        height: 100%;
 
                         img {
                             width: 180px;
