@@ -2,31 +2,31 @@ export default [
   {
     path: '/admin/article',
     icon: 'icon-os-icon-category',
-    text: '首页',
+    text: '首页'
   },
   {
-    path: '/home/article',
+    path: '/admin/article',
     icon: 'icon-os-icon-file',
-    text: '文章发布',
+    text: '文章发布'
   },
   {
     path: '/admin/album',
     icon: 'icon-os-icon-analysis',
-    text: '云相册',
+    text: '云相册'
   },
   {
-    path: '/home/info',
+    path: '/admin/info',
     icon: 'icon-os-icon-user',
-    text: '个人信息',
+    text: '个人信息'
   },
   {
-    path: '/home/fileUpload',
+    path: '/admin/fileUpload',
     icon: 'icon-os-icon-upload',
-    text: '文件上传',
+    text: '文件上传'
   },
   {
-    path: '/home/message',
+    path: '/admin/message',
     icon: 'icon-os-icon-edit',
-    text: '留言板',
-  },
+    text: '留言板'
+  }
 ]
