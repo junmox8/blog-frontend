@@ -209,6 +209,7 @@ const handleTurnPage = async (pageNumber) => {
       font-size: 13px;
       display: flex;
       align-items: center;
+      color: var(--color);
     }
 
     &-right {
@@ -256,6 +257,10 @@ const handleTurnPage = async (pageNumber) => {
         justify-content: center;
         align-items: center;
         outline: none;
+        /deep/ .el-pagination {
+          --el-pagination-bg-color: var(--background-color);
+          --el-pagination-button-disabled-bg-color: var(--button-disabled-bg-color);
+        }
       }
     }
   }
@@ -313,6 +318,7 @@ const handleTurnPage = async (pageNumber) => {
         /deep/ .el-tabs {
           border: none;
           background-color: var(--background-color);
+          color: var(--color);
           .el-tabs__header {
             background-color: var(--background-color);
           }
@@ -341,8 +347,9 @@ const handleTurnPage = async (pageNumber) => {
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: #e3e1e3;
+    border-color: var(--border-color);
     box-shadow: 2px 2px 2px #e3e1e3;
+    transition: all 0.3s linear;
   }
 }
 

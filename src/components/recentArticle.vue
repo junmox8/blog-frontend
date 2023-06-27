@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-20 23:03:16
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-27 22:00:58
+ * @LastEditTime: 2023-06-28 01:52:21
  * @FilePath: /blog-frontend/blog-frontend/src/components/recentArticle.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -44,7 +44,7 @@ const createdAt = computed(() => formatDate(props.time))
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #edeced;
-  color: #595859;
+  color: var(--grey-color);
   font-size: 15px;
   display: flex;
   align-items: center;

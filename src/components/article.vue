@@ -96,7 +96,6 @@ const tagType = computed(() => _tagType)
 
 <style scoped lang="less">
 .artist-container {
-  width: 100%;
   height: 240px;
   padding: 8px;
   display: flex;
@@ -143,7 +142,7 @@ const tagType = computed(() => _tagType)
       width: 90%;
       margin-top: 10px;
       font-size: 14px;
-      color: #474547;
+      color: var(--grey-color);
     }
 
     .main-info {
@@ -181,6 +180,7 @@ const tagType = computed(() => _tagType)
         .time {
           align-self: flex-end;
           font-size: 12px;
+          color: var(--color);
         }
       }
 
@@ -196,6 +196,7 @@ const tagType = computed(() => _tagType)
           margin-right: 10px;
           align-self: flex-end;
           font-size: 12px;
+          color: var(--color);
         }
       }
     }
