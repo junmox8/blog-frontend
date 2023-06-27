@@ -105,7 +105,11 @@ const tagType = computed(() => _tagType)
 
   &-img {
     width: 30%;
-    height: 100%;
+    height: 232px;
+    .el-image {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-main {

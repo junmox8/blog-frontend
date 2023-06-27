@@ -1,7 +1,10 @@
 <template>
-  <div class="container" :style="{
-    backgroundImage: `url(${staticInto.backgroundImgSrc})`,
-  }">
+  <div
+    class="container"
+    :style="{
+      backgroundImage: `url(${staticInto.backgroundImgSrc})`
+    }"
+  >
     <div class="container-left">
       <div class="container-left-text">
         <div class="cn-text">{{ staticInto.cnText }}</div>
@@ -20,54 +23,56 @@
           <p>用户名</p>
           <input type="text" v-model="usernameToLogin" @keydown.enter="handleLogin" class="input" />
           <p>密码</p>
-          <input type="password" v-model="passwordToLogin" @keydown.enter="handleLogin" class="input" />
-          <div class="change-box-link" @click="changeInputBox('register')">
-            点击注册
-          </div>
-          <el-button class="login-button" @click="handleLogin" :loading="loginLoading">立即登录</el-button>
+          <input
+            type="password"
+            v-model="passwordToLogin"
+            @keydown.enter="handleLogin"
+            class="input"
+          />
+          <div class="change-box-link" @click="changeInputBox('register')">点击注册</div>
+          <el-button class="login-button" @click="handleLogin" :loading="loginLoading"
+            >立即登录</el-button
+          >
         </div>
         <div class="register-box" ref="registerBox">
           <p>用户名</p>
           <input type="text" v-model="usernameToRegister" class="input" />
           <p>密码</p>
           <input type="password" v-model="passwordToRegister" class="input" />
-          <div class="change-box-link" @click="changeInputBox('login')">
-            点击登录
-          </div>
-          <el-button class="register-button" @click="handleRegister" :loading="registerLoading">立即注册</el-button>
+          <div class="change-box-link" @click="changeInputBox('login')">点击登录</div>
+          <el-button class="register-button" @click="handleRegister" :loading="registerLoading"
+            >立即注册</el-button
+          >
         </div>
       </div>
       <div class="container-right-footer">
-        <div class="online-users">
-          当前在线:{{ onlineUsers }}人
-        </div>
+        <div class="online-users">当前在线:{{ onlineUsers }}人</div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { ElMessage } from "element-plus";
-import { useUserStore } from "@/stores/user";
-import { useRouter } from "vue-router";
-import { ref, onMounted, reactive } from "vue";
-import { getLoginBgc, getLoginWord, register, login } from "@service/login";
+import { ElMessage } from 'element-plus'
+import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
+import { ref, onMounted, reactive } from 'vue'
+import { getLoginBgc, getLoginWord, register, login } from '@service/login'
 import socket from '@/utils/socket'
 const store = useUserStore()
-const router = useRouter();
-const usernameToRegister = ref("");
-const passwordToRegister = ref("");
-const usernameToLogin = ref("");
-const passwordToLogin = ref("");
+const router = useRouter()
+const usernameToRegister = ref('')
+const passwordToRegister = ref('')
+const usernameToLogin = ref('')
+const passwordToLogin = ref('')
 const currentBoxType = ref('login')
 const loginLoading = ref(false)
 const registerLoading = ref(false)
 const staticInto = reactive({
-  backgroundImgSrc: "",
-  cnText: "",
-  enText: "",
-});
+  backgroundImgSrc: '',
+  cnText: '',
+  enText: ''
+})
 const onlineUsers = ref(0)
 onMounted(() => {
   initAssets()
@@ -75,24 +80,24 @@ onMounted(() => {
 })
 const initAssets = async () => {
   try {
-    let promiseArr = [getLoginBgc(), getLoginWord()];
+    let promiseArr = [getLoginBgc(), getLoginWord()]
     Promise.all(promiseArr).then((res) => {
-      staticInto.backgroundImgSrc = "https://cn.bing.com/" + res[0].data.images[0].url;
-      staticInto.cnText = res[1].data.note;
-      staticInto.enText = res[1].data.content;
-    });
+      staticInto.backgroundImgSrc = 'https://cn.bing.com/' + res[0].data.images[0].url
+      staticInto.cnText = res[1].data.note
+      staticInto.enText = res[1].data.content
+    })
   } catch (error) {
     ElMessage({
-      message: "加载壁纸或文字失败",
-      type: "error",
-    });
+      message: '加载壁纸或文字失败',
+      type: 'error'
+    })
   }
 }
 const initOnlineUsers = async () => {
-  socket.on("onlineUsers", userCount => {
+  socket.on('onlineUsers', (userCount) => {
     onlineUsers.value = userCount
   })
-  socket.emit("getOnlineUsers", 1)
+  socket.emit('getOnlineUsers', 1)
 }
 const changeInputBox = (type) => {
   currentBoxType.value = type
@@ -100,63 +105,59 @@ const changeInputBox = (type) => {
 const handleRegister = async () => {
   if (usernameToRegister.value && passwordToRegister.value) {
     registerLoading.value = true
-    const { data: { success, errorMsg } } = await register(
-      usernameToRegister.value,
-      passwordToRegister.value
-    );
+    const {
+      data: { success, errorMsg }
+    } = await register(usernameToRegister.value, passwordToRegister.value)
     if (success) {
       ElMessage({
-        message: "用户注册成功",
-        type: "success",
-      });
+        message: '用户注册成功',
+        type: 'success'
+      })
     } else {
       ElMessage({
         message: errorMsg,
-        type: "error",
-      });
+        type: 'error'
+      })
     }
     registerLoading.value = false
-
   } else {
     ElMessage({
-      message: "请补充完整信息",
-      type: "error",
-    });
+      message: '请补充完整信息',
+      type: 'error'
+    })
   }
-};
+}
 const handleLogin = async () => {
   if (usernameToLogin.value && passwordToLogin.value) {
     loginLoading.value = true
-    const loginResult = await login(
-      usernameToLogin.value,
-      passwordToLogin.value
-    );
-    const { data: { success = false, errorMsg = '', data = {} } } = loginResult || {};
+    const loginResult = await login(usernameToLogin.value, passwordToLogin.value)
+    const {
+      data: { success = false, errorMsg = '', data = {} }
+    } = loginResult || {}
     if (success) {
       ElMessage({
-        message: "用户登录成功",
-        type: "success",
-      });
-      store.setUserId(data.dataValues.id);
-      store.setToken(data.token);
-      localStorage.setItem("token", data.token);
-      router.push("/admin?id=" + data.dataValues.id);
+        message: '用户登录成功',
+        type: 'success'
+      })
+      store.setUserId(data.dataValues.id)
+      store.setToken(data.token)
+      localStorage.setItem('token', data.token)
+      router.push('/admin?id=' + data.dataValues.id)
       socket.emit('connected', data.dataValues.id)
     } else {
       ElMessage({
         message: errorMsg,
-        type: "error",
-      });
+        type: 'error'
+      })
     }
     loginLoading.value = false
-
   } else {
     ElMessage({
-      message: "请补充完整信息",
-      type: "error",
-    });
+      message: '请补充完整信息',
+      type: 'error'
+    })
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -172,7 +173,7 @@ const handleLogin = async () => {
   background-color: #f0f1fa;
 
   &-left {
-    padding: 60vh 0 0 5vw;
+    padding: 500px 50px 0 50px;
     width: 50%;
     box-sizing: border-box;
 
@@ -180,7 +181,7 @@ const handleLogin = async () => {
       overflow: hidden;
 
       .en-text {
-        margin-top: 2vh;
+        margin-top: 10px;
       }
 
       .cn-text,
@@ -206,8 +207,8 @@ const handleLogin = async () => {
 
     &-header {
       position: relative;
-      margin-bottom: 120px !important;
-      margin-top: 6vh;
+      height: 120px;
+      margin-top: 60px;
       text-align: center;
       font-size: 28px;
       letter-spacing: 4px;
@@ -263,10 +264,7 @@ const handleLogin = async () => {
       .register-box {
         left: 100%;
         overflow: hidden;
-
       }
-
-
 
       .login-box,
       .register-box {
@@ -280,6 +278,7 @@ const handleLogin = async () => {
         .input {
           width: 99%;
           height: 40px;
+          font-size: 13px;
           background-color: transparent;
           outline: none !important;
           border-color: #cfcfcf;
@@ -309,8 +308,6 @@ const handleLogin = async () => {
           font-weight: 700;
         }
 
-
-
         p:nth-of-type(2) {
           margin-top: 18px;
         }
@@ -318,9 +315,10 @@ const handleLogin = async () => {
         .change-box-link {
           margin-top: 30px;
           width: max-content;
-          margin-left: 85%;
+          float: right;
           color: rgb(129, 138, 212);
           cursor: pointer;
+          font-size: 16px;
         }
 
         .login-button,
@@ -330,8 +328,6 @@ const handleLogin = async () => {
           color: #fffff8;
           margin-top: 18px;
         }
-
-
 
         .login-button:hover,
         .register-button:hover {
@@ -347,12 +343,14 @@ const handleLogin = async () => {
       display: flex;
       justify-content: center;
 
-      .online-users {}
+      .online-users {
+        font-size: 15px;
+      }
     }
 
     .is-login {
       .login-box {
-        left: 0
+        left: 0;
       }
 
       .register-box {
@@ -362,7 +360,7 @@ const handleLogin = async () => {
 
     .is-register {
       .login-box {
-        left: -100%
+        left: -100%;
       }
 
       .register-box {
@@ -372,16 +370,9 @@ const handleLogin = async () => {
   }
 }
 
-
-
-
-
-
-
-
-
 @keyframes a {
-  from {}
+  from {
+  }
 
   to {
     transform: rotateX(-97deg);

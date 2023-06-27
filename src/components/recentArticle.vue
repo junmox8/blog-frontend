@@ -1,3 +1,11 @@
+<!--
+ * @Author: 黄 俊轶 huangjunyi1@dxy.cn
+ * @Date: 2023-06-20 23:03:16
+ * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
+ * @LastEditTime: 2023-06-27 21:44:24
+ * @FilePath: /blog-frontend/blog-frontend/src/components/recentArticle.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="recent-article-container">
     <div class="title">
@@ -47,7 +55,7 @@ const createdAt = computed(() => formatDate(props.time))
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 60%;
+    max-width: 58%;
   }
 
   .timestamp {

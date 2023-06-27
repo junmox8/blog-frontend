@@ -1,5 +1,5 @@
 <template>
-  <div :class="['menu-item-container', 'article-container', store.theme]">
+  <div :class="['menu-item-container', store.theme]">
     <transition appear name="left-content" enter-active-class="left-content-enter">
       <div class="left-content">
         <div class="article-list border">
@@ -115,14 +115,13 @@
                 </div>
                 <div class="welcome-text">
                   <img
-                    width="20"
                     src="https://huangjunyi-1310688513.cos.ap-shanghai.myqcloud.com/articleContent/%E8%9A%81%E4%BA%BA.png "
                   />
                   <span>有问题欢迎同学来学习讨论^ ^</span>
                 </div>
                 <div></div>
               </el-tab-pane>
-              <el-tab-pane label="xxx"> 暂时没想好这里写啥= = </el-tab-pane>
+              <el-tab-pane label="xxx"> <span>暂时没想好这里写啥= = </span></el-tab-pane>
             </el-tabs>
           </div>
         </div>
@@ -187,7 +186,7 @@ const handleTurnPage = async (pageNumber) => {
 </script>
 
 <style lang="less" scoped>
-.article-container {
+.menu-item-container {
   padding: 50px 12% 100px 12%;
   box-sizing: border-box;
   display: flex;
@@ -285,6 +284,7 @@ const handleTurnPage = async (pageNumber) => {
 
         .catalogue-tag {
           cursor: pointer;
+          padding: 11px;
         }
 
         .catalogue-tag:hover {
@@ -302,7 +302,6 @@ const handleTurnPage = async (pageNumber) => {
 
     .make-friend-content {
       width: 22vw;
-      height: 160px;
       background-color: var(--background-color);
       margin-bottom: 10px;
 
@@ -315,7 +314,7 @@ const handleTurnPage = async (pageNumber) => {
             background-color: var(--background-color);
           }
           .el-tabs__content {
-            padding: 10px 0 0px 10px;
+            padding: 10px;
           }
         }
         .contact-information {
@@ -327,6 +326,9 @@ const handleTurnPage = async (pageNumber) => {
         .welcome-text {
           display: flex;
           align-items: center;
+          img {
+            width: 20px;
+          }
         }
       }
     }
