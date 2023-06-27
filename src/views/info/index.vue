@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-24 17:24:09
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-27 23:33:31
+ * @LastEditTime: 2023-06-27 23:55:36
  * @FilePath: /blog-frontend/blog-frontend/src/views/info/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,12 +10,12 @@
   <div :class="['menu-item-container', store.theme]">
     <div class="info-container" v-if="!isLoading">
       <div class="info-container-header">
-        <transition appear name="info-summarize" enter-active-class="info-summarize-enter">
+        <transition appear name="summarize">
           <div class="summarize mb20">这里是你的个人信息～</div>
         </transition>
       </div>
       <div class="info-container-body">
-        <transition appear name="info-avatar" enter-active-class="info-avatar-enter">
+        <transition appear name="avatar">
           <el-upload
             class="avatar-uploader"
             :show-file-list="false"
@@ -26,7 +26,7 @@
             <el-icon v-show="!info.avatar" class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </transition>
-        <transition appear name="info-text" enter-active-class="info-text-enter">
+        <transition appear name="text">
           <div class="text-info">
             <div class="name mb20">
               <div class="info-title">昵称</div>
@@ -252,37 +252,25 @@ const validateForm = (form) => {
     }
   }
 }
-.info-summarize-enter {
-  animation-name: summarize;
-  animation-duration: 2s;
+.summarize-enter-active,
+.summarize-leave-active {
+  transition: all 2s ease;
 }
-.info-avatar-enter {
-  animation-name: avatar;
-  animation-duration: 2.5s;
+.avatar-enter-active,
+.avatar-leave-active {
+  transition: all 3s ease;
 }
-.info-text-enter {
-  animation-name: text;
-  animation-duration: 3s;
+.text-enter-active,
+.text-leave-active {
+  transition: all 4s ease;
 }
-@keyframes summarize {
-  from {
-    transform: translateY(-100px);
-  }
-  to {
-  }
-}
-@keyframes avatar {
-  from {
-    transform: translateY(-100px);
-  }
-  to {
-  }
-}
-@keyframes text {
-  from {
-    transform: translateY(-100px);
-  }
-  to {
-  }
+.summarize-enter-from,
+.summarize-leave-to,
+.avatar-enter-from,
+.avatar-leave-to,
+.text-enter-from,
+.text-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
 }
 </style>
