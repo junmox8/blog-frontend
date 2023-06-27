@@ -147,6 +147,9 @@ const isLoading = ref(false)
 const tags = computed(() => articleTags)
 const tagType = computed(() => _tagType)
 onMounted(async () => {
+  initData()
+})
+const initData = async () => {
   try {
     const {
       data: { data: _articlesCount }
@@ -166,7 +169,7 @@ onMounted(async () => {
       message: '获取数据失败,请重试'
     })
   }
-})
+}
 const handleTurnPage = async (pageNumber) => {
   try {
     isLoading.value = true

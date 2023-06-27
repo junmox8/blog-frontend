@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-24 17:24:09
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-27 18:49:23
+ * @LastEditTime: 2023-06-27 23:33:31
  * @FilePath: /blog-frontend/blog-frontend/src/views/info/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,44 +10,71 @@
   <div :class="['menu-item-container', store.theme]">
     <div class="info-container" v-if="!isLoading">
       <div class="info-container-header">
-        <div class="summarize">这里是你的个人信息～</div>
+        <transition appear name="info-summarize" enter-active-class="info-summarize-enter">
+          <div class="summarize mb20">这里是你的个人信息～</div>
+        </transition>
       </div>
       <div class="info-container-body">
-        <el-upload
-          class="avatar-uploader animate2"
-          :show-file-list="false"
-          :http-request="handleStart"
-          :disabled="!isEdit"
-        >
-          <img v-show="!isEdit" class="avatar" :src="info.avatar" />
-          <el-icon v-show="isEdit" class="avatar-uploader-icon"><Plus /></el-icon>
-        </el-upload>
-        <div class="text-info">
-          <div class="name mb20">
-            <div class="info-title">昵称</div>
-            <el-input
-              v-show="isEdit"
-              v-model="inputValue.name"
-              placeholder="请输入"
-              clearable
-              class="info-edit"
-            />
-            <div v-show="!isEdit" class="info-content">
-              {{ info.name }}
+        <transition appear name="info-avatar" enter-active-class="info-avatar-enter">
+          <el-upload
+            class="avatar-uploader"
+            :show-file-list="false"
+            :http-request="handleStart"
+            :disabled="!isEdit"
+          >
+            <img v-show="info.avatar" class="avatar" :src="info.avatar" />
+            <el-icon v-show="!info.avatar" class="avatar-uploader-icon"><Plus /></el-icon>
+          </el-upload>
+        </transition>
+        <transition appear name="info-text" enter-active-class="info-text-enter">
+          <div class="text-info">
+            <div class="name mb20">
+              <div class="info-title">昵称</div>
+              <el-input
+                v-show="isEdit"
+                v-model="editInfo.name"
+                placeholder="请输入"
+                clearable
+                class="info-edit"
+              />
+              <div v-show="!isEdit" class="info-content">
+                {{ info.name }}
+              </div>
+            </div>
+            <div class="introduction">
+              <div class="info-title">简介</div>
+              <el-input
+                v-show="isEdit"
+                v-model="editInfo.introduction"
+                placeholder="请输入"
+                clearable
+                class="info-edit"
+              />
+              <div v-show="!isEdit" class="info-content">
+                {{ info.introduction }}
+              </div>
             </div>
           </div>
-          <div class="introduction"></div>
+        </transition>
+      </div>
+      <div class="info-container-footer">
+        <div v-show="isEdit">
+          <el-button type="primary" class="mr5" @click="handleSave">保存</el-button>
+          <el-button @click="cancelEdit">取消编辑</el-button>
+        </div>
+        <div v-show="!isEdit">
+          <el-button type="primary" class="mr5" @click="handleEdit">编辑</el-button>
+          <el-button @click="exit">退出登录</el-button>
         </div>
       </div>
-      <div class="info-container-footer"></div>
     </div>
     <el-skeleton class="skeleton-container" v-else>
       <template #template>
         <div class="skeleton">
           <el-skeleton-item variant="text" class="skeleton-text mv5" />
           <el-skeleton-item variant="circle" class="skeleton-circle" />
-          <el-skeleton-item variant="p" class="skeleton-p mb5" />
-          <el-skeleton-item variant="text" class="mb5" />
+          <el-skeleton-item variant="p" class="skeleton-p mb20" />
+          <el-skeleton-item variant="text" class="mb20" />
           <el-skeleton-item variant="text" />
         </div>
       </template>
@@ -56,25 +83,93 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import { useThemeStore } from '@/stores/theme.js'
+import { getMyUserInfo, updateUserInfo } from '@/axios/service/info'
+import { uploadFile } from '@/utils/upload'
+const router = useRouter()
 const store = useThemeStore()
-const isEdit = ref(true)
+const isEdit = ref(false)
 const isLoading = ref(false)
-const info = reactive({
+let info = reactive({
   avatar: '',
   name: '',
   introduce: ''
 })
-const inputValue = reactive({
+const editInfo = reactive({
+  avatar: '',
   name: '',
   introduction: ''
 })
+onMounted(async () => {
+  await handleFetchUserInfo()
+})
+const handleFetchUserInfo = async () => {
+  isLoading.value = true
+  const {
+    data: { data: userInfo }
+  } = await getMyUserInfo()
+  info = userInfo
+  isLoading.value = false
+}
+const handleStart = async (file) => {
+  if (!file.file.type.includes('image')) {
+    return ElMessage({
+      message: '请选择图片上传',
+      type: 'error'
+    })
+  }
+  const result = await uploadFile(file.file, file.file.uid)
+  editInfo.avatar = result
+}
+const handleSave = async () => {
+  if (validateForm(editInfo)) {
+    const result = await updateUserInfo(editInfo)
+    if (result) {
+      ElMessage({ type: 'success', message: '更改信息成功' })
+      handleFetchUserInfo()
+    } else ElMessage({ type: 'error', message: '更改信息失败' })
+    isEdit.value = false
+  } else {
+    ElMessage({ type: 'error', message: '请填写完整信息' })
+  }
+}
+const handleEdit = async () => {
+  isEdit.value = true
+  Object.assign(editInfo, JSON.parse(JSON.stringify(info)))
+}
+const cancelEdit = () => {
+  isEdit.value = false
+  resetForm()
+}
+const exit = () => {
+  localStorage.removeItem('token')
+  router.replace('/login')
+}
+const resetForm = () => {
+  const form = {
+    name: '',
+    introduction: ''
+  }
+  Object.assign(editInfo, form)
+}
+const validateForm = (form) => {
+  let valid = true
+  Object.keys(form).forEach((key) => {
+    if (!form[key]) {
+      valid = false
+    }
+  })
+  return valid
+}
 </script>
 <style lang="less" scoped>
 .menu-item-container {
   padding: 50px 0 0 190px;
   .info-container {
+    overflow: hidden;
     &-header {
       .summarize {
         color: #fcac2b;
@@ -83,6 +178,7 @@ const inputValue = reactive({
     }
 
     &-body {
+      margin-bottom: 20px;
       .avatar-uploader {
         margin-bottom: 50px;
         .el-upload {
@@ -154,6 +250,39 @@ const inputValue = reactive({
         width: 200px;
       }
     }
+  }
+}
+.info-summarize-enter {
+  animation-name: summarize;
+  animation-duration: 2s;
+}
+.info-avatar-enter {
+  animation-name: avatar;
+  animation-duration: 2.5s;
+}
+.info-text-enter {
+  animation-name: text;
+  animation-duration: 3s;
+}
+@keyframes summarize {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+  }
+}
+@keyframes avatar {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+  }
+}
+@keyframes text {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
   }
 }
 </style>
