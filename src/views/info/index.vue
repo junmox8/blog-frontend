@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-24 17:24:09
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-28 01:31:56
+ * @LastEditTime: 2023-06-29 21:46:32
  * @FilePath: /blog-frontend/blog-frontend/src/views/info/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -132,8 +132,6 @@ const handleSave = async () => {
       handleFetchUserInfo()
     } else ElMessage({ type: 'error', message: '更改信息失败' })
     isEdit.value = false
-  } else {
-    ElMessage({ type: 'error', message: '请填写完整信息' })
   }
 }
 const handleEdit = async () => {
@@ -160,8 +158,19 @@ const validateForm = (form) => {
   Object.keys(form).forEach((key) => {
     if (!form[key]) {
       valid = false
+      ElMessage({
+        type: 'error',
+        message: '请填写完整信息'
+      })
     }
   })
+  if (form.name.length > 10) {
+    valid = false
+    ElMessage({
+      type: 'error',
+      message: '昵称长度不能超过10个字符'
+    })
+  }
   return valid
 }
 </script>
