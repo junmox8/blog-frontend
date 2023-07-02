@@ -132,18 +132,25 @@ const handleLogin = async () => {
     loginLoading.value = true
     const loginResult = await login(usernameToLogin.value, passwordToLogin.value)
     const {
-      data: { success = false, errorMsg = '', data = {} }
+      data: {
+        success = false,
+        errorMsg = '',
+        data: { dataValues, token }
+      }
     } = loginResult || {}
     if (success) {
       ElMessage({
         message: '用户登录成功',
         type: 'success'
       })
-      store.setUserId(data.dataValues.id)
-      store.setToken(data.token)
-      localStorage.setItem('token', data.token)
-      router.push('/admin?id=' + data.dataValues.id)
-      socket.emit('connected', data.dataValues.id)
+      store.setUserId(dataValues.id)
+      store.setUserInfo({
+        name: dataValues.name,
+        avatar: dataValues.avatar
+      })
+      localStorage.setItem('token', token)
+      router.push('/admin?id=' + dataValues.id)
+      socket.emit('connected', dataValues.id)
     } else {
       ElMessage({
         message: errorMsg,

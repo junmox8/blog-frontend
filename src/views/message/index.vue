@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-29 11:39:19
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-29 22:12:18
+ * @LastEditTime: 2023-07-02 15:20:00
  * @FilePath: /blog-frontend/blog-frontend/src/views/message/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -38,6 +38,7 @@
               v-bind="message"
               :currentPage="pageBean.currentPage"
               :index="index"
+              @deleteMessage="handleDeleteMessage"
             ></Message>
           </div>
         </div>
@@ -59,14 +60,12 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
-import { formatDate } from '@/utils/date'
 import { ElMessage } from 'element-plus'
 import Message from '@/components/message.vue'
-import { handUpMessage, fetchMessage } from '@/axios/service/message'
+import { handUpMessage, fetchMessage, deleteMessage } from '@/axios/service/message'
 const store = useThemeStore()
 const isLoading = ref(false)
 const comment = ref('')
-const reply = ref('')
 const pageBean = reactive({
   currentPage: 1,
   total: 0
@@ -80,7 +79,6 @@ const handleFetchMessages = async (page) => {
   const {
     data: { data: messages }
   } = await fetchMessage(page)
-  console.log(messages)
   pageBean.total = messages.count
   messageList.value = messages.rows
   isLoading.value = false
@@ -112,6 +110,14 @@ const handleTurnPage = async (page) => {
   pageBean.currentPage = page
   await handleFetchMessages(page)
 }
+const handleDeleteMessage = async (id) => {
+  await deleteMessage(id)
+  await handleFetchMessages(pageBean.currentPage)
+  ElMessage({
+    message: '删除成功',
+    type: 'success'
+  })
+}
 </script>
 
 <style lang="less" scoped>
@@ -129,6 +135,7 @@ const handleTurnPage = async (page) => {
       overflow: hidden;
       position: relative;
       margin-bottom: 80px;
+      font-size: 16px;
       .text {
         height: 40px;
         left: 100%;
