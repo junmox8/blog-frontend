@@ -57,7 +57,7 @@
 <script setup>
 import { reactive, computed } from 'vue'
 import { useThemeStore } from '@/stores/theme'
-import { uploadFile } from '@/utils/upload'
+import { uploadImg } from '@/utils/upload'
 import { ElMessage } from 'element-plus'
 import MarkDown from '@/components/markDown.vue'
 import { handUpArticle } from '@/axios/service/article'
@@ -72,7 +72,7 @@ const editForm = reactive({
 })
 const selectData = computed(() => articleCategories)
 const handleUpload = async (file) => {
-  const result = await uploadFile(file.file, file.file.uid)
+  const result = await uploadImg(file.file, file.file.uid)
   editForm.coverImg = result
 }
 const handleCreateArticle = async () => {

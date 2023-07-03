@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-17 15:50:56
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-27 21:54:18
+ * @LastEditTime: 2023-07-04 00:21:10
  * @FilePath: /blog-frontend/blog-frontend/src/views/album/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -82,7 +82,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { handUpImgKind, getAllImgKinds, handUpImg, getImgs } from '@/axios/service/album'
 import { Upload } from '@element-plus/icons-vue'
-import { uploadFile } from '@/utils/upload'
+import { uploadImg } from '@/utils/upload'
 import { throttle } from '@/utils/closure'
 import { useThemeStore } from '@/stores/theme'
 import WaterFall from '@/class/waterFall'
@@ -178,7 +178,7 @@ const handleUploadImg = async (file) => {
     })
     return fileList.value.pop()
   }
-  const result = await uploadFile(file.file, file.file.uid)
+  const result = await uploadImg(file.file, file.file.uid)
   fileList.value.push({
     name: file.file.uid,
     url: result

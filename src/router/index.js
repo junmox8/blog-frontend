@@ -2,7 +2,7 @@
  * @Author: 黄 俊轶 huangjunyi1@dxy.cn
  * @Date: 2023-06-07 11:10:12
  * @LastEditors: 黄 俊轶 huangjunyi1@dxy.cn
- * @LastEditTime: 2023-06-29 11:38:52
+ * @LastEditTime: 2023-07-03 00:05:40
  * @FilePath: /blog-frontend/blog-frontend/src/router/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -50,6 +50,11 @@ const routes = [
         path: 'message',
         name: 'message',
         component: () => import('@/views/message/index.vue')
+      },
+      {
+        path: 'file',
+        name: 'file',
+        component: () => import('@/views/file/index.vue')
       }
     ]
   }
